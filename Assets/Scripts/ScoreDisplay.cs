@@ -3,7 +3,8 @@ using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
-    private TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI comboText;
     private GameManager gameManager;
 
     void Awake()
@@ -13,7 +14,7 @@ public class ScoreDisplay : MonoBehaviour
 
     void Start()
     {
-        scoreText = GetComponent<TextMeshProUGUI>();
+        //scoreText = GetComponent<TextMeshProUGUI>();
         gameManager = GameManager.Instance;
         UpdateScoreDisplay();
     }
@@ -27,5 +28,6 @@ public class ScoreDisplay : MonoBehaviour
     void UpdateScoreDisplay()
     {
         scoreText.text = "Score: " + gameManager.score.ToString();
+        comboText.text = "Combo: " + gameManager.combo.ToString();
     }
 }

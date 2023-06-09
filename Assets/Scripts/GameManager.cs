@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     // Public properties or variables for game state, score, etc.
     public int score = 0;
+    public int combo = 0;
     public bool isGameOver = false;
 
     // Getter for the singleton instance
@@ -40,6 +41,17 @@ public class GameManager : MonoBehaviour
             score += points;
             // Additional score-related logic or event handling can be implemented here
         }
+    }
+    public void IncreaseCombo(int points)
+    {
+        if (!isGameOver)
+        {
+            combo += points;
+        }
+    }
+    public void ResetCombo()
+    {
+        combo = 0;
     }
 
     // Example method to end the game
