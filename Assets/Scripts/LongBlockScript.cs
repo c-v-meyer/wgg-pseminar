@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlocksScript : MonoBehaviour
+public class LongBlockScript : MonoBehaviour
 {
     public float speed; // The desired speed of the object
 
     public float minY = -5f;
 
     public ParticleEffect particleEffect;
+    public GameObject square;
+    public GameObject secCircle;
 
     private Rigidbody2D rb;
     [SerializeField] private string key;
     private float spposition;
+    [SerializeField] private float length;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,31 +30,36 @@ public class BlocksScript : MonoBehaviour
 
         // Apply the new velocity to the object
         rb.velocity = velocity;
+        Transform squareTransform = square.transform;
+        Transform secCircleTransform = secCircle.transform;
+        squareTransform.localScale = new Vector3(1f, 1f, 1f);
         GameObject attachedGameObject = gameObject;
-        
+        secCircle.transform.localPosition = new Vector3(0, length, 0);
+        square.transform.localScale = new Vector3(1f, length, 1f);
+
+
         switch (attachedGameObject.name)
         {
-            case "Circle 1(Clone)":
+            case "Circle 1 (long)(Clone)":
                 key = "First Button";
                 spposition = -3f;
                 break;
-            case "Circle 2(Clone)":
+            case "Circle 2 (long)(Clone)":
                 key = "Second Button";
                 spposition = -1f;
                 break;
-            case "Circle 3(Clone)":
+            case "Circle 3 (long)(Clone)":
                 key = "Third Button";
                 spposition = 1f;
                 break;
-            case "Circle 4(Clone)":
+            case "Circle 4 (long)(Clone)":
                 key = "Fourth Button";
                 spposition = 3f;
                 break;
             default:
-                Debug.Log("Something went wrong " + attachedGameObject.name);
+                Debug.Log("Something went wrong");
                 break;
         }
-
     }
 
     // Update is called once per frame
@@ -64,12 +72,11 @@ public class BlocksScript : MonoBehaviour
         }
         if (Input.GetButtonDown(key))
         {
-            
+
             CheckAndDeleteObject();
 
         }
     }
-
     private void CheckAndDeleteObject()
     {
         float objY = transform.position.y;
@@ -77,7 +84,7 @@ public class BlocksScript : MonoBehaviour
         Debug.Log("diff is: " + diff + "    while objY is:" + objY);
         if (diff >= -0.75f && diff <= 0.75f)
         {
-            if(diff >= -0.75f && diff < -0.55f)
+            if (diff >= -0.75f && diff < -0.55f)
             {
                 GameManager.Instance.IncreaseScore(1);
                 particleEffect.PlayParticleEffect(5, spposition);
@@ -102,9 +109,17 @@ public class BlocksScript : MonoBehaviour
                 GameManager.Instance.IncreaseScore(1);
                 particleEffect.PlayParticleEffect(1, spposition);
             }
-           
+
             GameManager.Instance.IncreaseCombo(1);
             Destroy(gameObject);
         }
+    }
+    public void setLength(float newLength)
+    {
+        length = newLength;
+        square.transform.localScale = new Vector3(1f, length, 1f);
+        square.transform.localPosition = new Vector3(0, length/2, 0);
+        Debug.Log(length.ToString() + square.transform.localScale.y.ToString());
+
     }
 }

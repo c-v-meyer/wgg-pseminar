@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int combo = 0;
     public bool isGameOver = false;
-
+    [SerializeField] private float speed;
+    [SerializeField] private float BPM;
+    [SerializeField] private int highscore;
     // Getter for the singleton instance
     public static GameManager Instance
     {
@@ -29,9 +31,14 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+        highscore = PlayerPrefs.GetInt("HighscoreRhythmGame", 0);
     }
 
-    
+    private void Start()
+    {
+        BPM = 90;
+        speed = 5f;
+    }
 
     // Example method to increase the score
     public void IncreaseScore(int points)
@@ -40,6 +47,11 @@ public class GameManager : MonoBehaviour
         {
             score += points;
             // Additional score-related logic or event handling can be implemented here
+        }
+        if (score > highscore)
+        {
+            PlayerPrefs.SetInt("HighscoreRhythmGame", score);
+            highscore = score;
         }
     }
     public void IncreaseCombo(int points)
@@ -59,5 +71,15 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         // Perform actions when the game is over, such as displaying a game over screen, saving high scores, etc.
+    }
+    
+    public float getBPM()
+    {
+        return BPM;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
     }
 }
