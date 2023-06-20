@@ -30,10 +30,10 @@ public class ObjectSpawner : MonoBehaviour
     private void SpawnRandomObject()
     {
         float length = 1;
-        int randomNum = Random.Range(1, 9);
+        int randomNum = Random.Range(1, 5);
         if (randomNum > 4)
         {
-            length = GameManager.Instance.getSpeed()*beatInterval+1;
+            length =2*(GameManager.Instance.getSpeed()*beatInterval+1);
         }
         
         switch (randomNum)

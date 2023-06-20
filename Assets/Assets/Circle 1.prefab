@@ -120,4 +120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  minY: -5
+  minY: -20
+  particleEffect: {fileID: 0}
+  key: 
