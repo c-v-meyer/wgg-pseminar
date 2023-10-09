@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Gang.unity
+    guid: 3436ac0f044a28345b1dea2133dba5c8
+  - enabled: 1
+    path: Assets/flappy_bird_game/Assets/Scenes/Flappy Bird.unity
+    guid: 35df37a1f02586a48b3051cfa71ea67c
+  - enabled: 1
+    path: Assets/paper_stack_game/Assets/Scenes/Paper Stack.unity
+    guid: c8b8e4f122ae9f6489829945a8e1ca5d
+  - enabled: 1
+    path: Assets/rhythm-game/Assets/Scenes/Rhythm Game.unity
+    guid: 0383378ba85fb3c48b1f636a27d7f942
   m_configObjects: {}
